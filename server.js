@@ -1,6 +1,5 @@
 import { connectDB } from './database/Database.js';
 import { app } from './middlewares.js'
-import ServerlessHttp from 'serverless-http';
 
 connectDB();
 
