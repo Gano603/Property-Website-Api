@@ -4,6 +4,7 @@ import { userrouter } from './routes/Userroutes.js';
 import { adrouter } from './routes/Adroutes.js';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
+import cors from 'cors'
 
 export const app = express();
 
