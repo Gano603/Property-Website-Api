@@ -15,8 +15,8 @@ config({
 
 /////////////////////for Development Only//////////////////
 const corsOptions = {
-    origin: 'http://localhost:5173', // Replace with the origin you want to allow
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    origin: process.env.FRONT_END_URL, // Replace with the origin you want to allow
+    methods: ["GET","PUT","POST","DELETE"],
     credentials: true, // If you need to support cookies or authentication
   };
   
