@@ -2,7 +2,6 @@ import {usermodel} from '../models/user.js'
 import { respone } from '../utils/features.js';
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import { response } from 'express';
 
 
 export const createNewUser = async (req,res)=>{
@@ -11,7 +10,7 @@ export const createNewUser = async (req,res)=>{
     const auth = await usermodel.findOne({email});
 
     if(auth){
-        return respone(res,404,false,"User already exists")
+        return respone(res,202,false,"User already exists")
     }
 
     const hashedpass = await bcrypt.hash(password,10).catch((err)=> console.log(err))
@@ -25,7 +24,7 @@ export const createNewUser = async (req,res)=>{
 
     const token = jwt.sign({_id:some._id},process.env.DATA_KEY);
 
-    respone(res,200,true,"User Created",token);
+    respone(res,201,true,"User Created",token);
             
 }
 
@@ -37,12 +36,12 @@ export const getUser = async (req,res)=>{
         const data = await usermodel.findById(_id);
 
         if(data){
-             respone(res,200,true,"User Exists",Session,data)
+             respone(res,202,true,"User Exists",Session,data)
         }
-        else respone(res,404,false,"User does not Exist")
+        else respone(res,204,false,"User does not Exist")
     }
     else{
-        respone(res,404,false,"User is not Signed In",undefined)
+        respone(res,202,false,"User is not Signed In",undefined)
     }
 }
 
@@ -56,7 +55,7 @@ export const updateUser = async (req,res)=>{
              respone(res,200,true,"User Updated",Session)
     }
     else{
-        respone(res,404,false,"User is not Signed In",undefined)
+        respone(res,202,false,"User is not Signed In",undefined)
     }
 }
 
@@ -68,14 +67,14 @@ export const deleteUser = async (req,res)=>{
              respone(res,200,true,"User Deleted",undefined,returned)
     }
     else{
-        respone(res,404,false,"User is not Signed In",undefined)
+        respone(res,202,false,"User is not Signed In",undefined)
     }
 }
 
 export const Login = async (req,res)=>{
     let {Session} = req.cookies;
     if(Session){
-        return respone(res,404,false,"User Already Logged In",Session)
+        return respone(res,202,false,"User Already Logged In",Session)
     }
     else{
         const {email,password} = req.body;
@@ -87,11 +86,11 @@ export const Login = async (req,res)=>{
                 respone(res,200,true,"Logged In Successfully",token)
             }
             else{
-                respone(res,404,false,"Incorrect Password",undefined)
+                respone(res,202,false,"Incorrect Password",undefined)
             }
         }
         else{
-            respone(res,404,false,"Email does not Exist",undefined)
+            respone(res,202,false,"Email does not Exist",undefined)
         }
     }
 }
@@ -102,7 +101,7 @@ export const Logout = async (req,res)=>{
              respone(res,200,true,"Logged Out Successfully",undefined)
     }
     else{
-        respone(res,404,false,"User is not Signed In",undefined)
+        respone(res,202,false,"User is not Signed In",undefined)
     }
 }
 
