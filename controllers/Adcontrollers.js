@@ -19,8 +19,7 @@ export const newAd = async (req, res) => {
   
         }
     catch (error) {
-      console.error('Error creating ad:', error);
-      return respone(res, 404, false, "Internal Server Error");
+      return respone(res, 404, false, "Internal Server Error"+error);
     }
   }
   
