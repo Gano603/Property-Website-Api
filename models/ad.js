@@ -26,17 +26,17 @@ const AdSchema = new Schema(
         },
 
         baths:{
-        type:Number,
+        type:String,
         required:true
         },
 
         beds:{
-        type:Number,
+        type:String,
         required:true
         },
 
         size:{
-        type:Number,
+        type:String,
         required:true
         },
 
