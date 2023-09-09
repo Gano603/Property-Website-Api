@@ -15,10 +15,11 @@ config({
 
 /////////////////////for Development Only//////////////////
 const corsOptions = {
-    origin: process.env.FRONT_END_URL, // Replace with the origin you want to allow
-    methods: ["GET","PUT","POST","DELETE"],
-    credentials: true, // If you need to support cookies or authentication
-  };
+  'Access-Control-Allow-Origin': process.env.FRONT_END_URL,
+  'methods': ["GET", "PUT", "POST", "DELETE"],
+  'credentials': true,
+};
+
   
   
 app.use(cors(corsOptions));
