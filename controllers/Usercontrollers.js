@@ -113,7 +113,7 @@ export const test = async (req,res) => {
         httpOnly: true,
         sameSite: "none",
         credentials: true,
-        domain: "localhost",
+        // domain: "localhost",
     };
 
     // Set the "secure" attribute only in production
