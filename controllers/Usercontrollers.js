@@ -120,7 +120,7 @@ export const test = async (req,res) => {
     if (process.env.NODE_ENV === "development") {
         cookieOptions.secure = true;
     }
-    res.cookie("Khudaya","Hello World",cookieOptions).status(200).json({
+    res.cookie(Khudaya,"Hello World",cookieOptions).status(200).json({
         message:"dEKH BEGHAIRAT",
     })
 }
