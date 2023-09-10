@@ -107,13 +107,19 @@ export const Logout = async (req,res)=>{
 
 export const test = async (req,res) => {
     const {Khudaya} = req.cookies;
-    res.cookie("Khudaya","Hello World",{
-        maxAge:999999,
+
+    const cookieOptions = {
+        maxAge: 999999,
         httpOnly: true,
-        sameSite:"none",
-        secure:true,
-        credentials: true
-    }).status(200).json({
+        sameSite: "none",
+        credentials: true,
+    };
+
+    // Set the "secure" attribute only in production
+    if (process.env.NODE_ENV === "development") {
+        cookieOptions.secure = true;
+    }
+    res.cookie("Khudaya","Hello World",cookieOptions).status(200).json({
         message:"dEKH BEGHAIRAT",
     })
 }
