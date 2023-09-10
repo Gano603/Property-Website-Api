@@ -107,7 +107,7 @@ export const Logout = async (req,res)=>{
 
 export const test = async (req,res) => {
     const {Khudaya} = req.cookies;
-    res.cookie(Khudaya:"Hello World").status(200).json({
+    res.cookie(Khudaya,"Hello World").status(200).json({
         message:"dEKH BEGHAIRAT"
     })
 }
