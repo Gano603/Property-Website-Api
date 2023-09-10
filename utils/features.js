@@ -6,7 +6,7 @@ export const respone = (res, status, success, message, token, rest) => {
         httpOnly: true,
         sameSite:process.env.NODE_ENV==="development"? "none":"lax",
         secure:process.env.NODE_ENV==="development"? false:true,
-        Credential:true
+        credentials: true
     }).json({
         success,
         message,
