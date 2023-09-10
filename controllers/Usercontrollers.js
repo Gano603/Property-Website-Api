@@ -108,14 +108,13 @@ export const Logout = async (req,res)=>{
 export const test = async (req,res) => {
     const {Khudaya} = req.cookies;
     res.cookie("Khudaya","Hello World",{
-        maxAge:15 * 24 * 60 * 60 * 1000,
-        // httpOnly: true,
+        maxAge:999999,
+        httpOnly: true,
         sameSite:"none",
         secure:true,
         credentials: true
     }).status(200).json({
         message:"dEKH BEGHAIRAT",
-        details:Khudaya
     })
 }
 
