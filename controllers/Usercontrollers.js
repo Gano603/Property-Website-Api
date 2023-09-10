@@ -114,12 +114,15 @@ export const test = async (req,res) => {
         sameSite: "none",
         credentials: true,
         // domain: "localhost",
+
     };
 
     // Set the "secure" attribute only in production
     if (process.env.NODE_ENV === "development") {
         cookieOptions.secure = true;
     }
+
+    res.setHeader("Set-Cookie","Khudaya=Hello World");
     return res.cookie(Khudaya,"Hello World",cookieOptions).status(200).json({
         message:"dEKH BEGHAIRAT",
     })
