@@ -105,8 +105,11 @@ export const Logout = async (req,res)=>{
     }
 }
 
-// export const isLogIn = async (req,res) => {
-//     const {Session} = req.cookies;
-//     if(Session) response(res,200,true,"User is Signed In");
-//     else response(res,404,false,"User is not Signed In")
-// }
+export const test = async (req,res) => {
+    const {Khudaya} = req.cookies;
+    res.cookie(Khudaya:"Hello World").status(200).json({
+        message:"dEKH BEGHAIRAT"
+    })
+}
+
+
