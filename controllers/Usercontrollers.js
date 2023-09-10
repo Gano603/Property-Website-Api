@@ -24,7 +24,7 @@ export const createNewUser = async (req,res)=>{
 
     const token = jwt.sign({_id:some._id},process.env.DATA_KEY);
 
-    respone(res,201,true,"User Created",token);
+    return respone(res,201,true,"User Created",token);
             
 }
 
@@ -73,24 +73,24 @@ export const deleteUser = async (req,res)=>{
 
 export const Login = async (req,res)=>{
     const {Session} = req.cookies;
+    const {email,password} = req.body;
     if(Session){
         return respone(res,202,false,"User Already Logged In",Session)
     }
     else{
-        const {email,password} = req.body;
         const auth = await usermodel.findOne({email});
         if(auth && auth.registered){
             const respond = await bcrypt.compare(password,auth.password);
             if(respond){
                 const token = jwt.sign({_id:auth._id},process.env.DATA_KEY);
-                respone(res,200,true,"Logged In Successfully",token)
+                return respone(res,200,true,"Logged In Successfully",token)
             }
             else{
-                respone(res,202,false,"Incorrect Password",undefined)
+                return respone(res,202,false,"Incorrect Password",undefined)
             }
         }
         else{
-            respone(res,202,false,"Email does not Exist",undefined)
+            return respone(res,202,false,"Email does not Exist",undefined)
         }
     }
 }
