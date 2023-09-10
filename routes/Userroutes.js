@@ -3,7 +3,7 @@ import { createNewUser, deleteUser, getUser, Login, Logout, test, updateUser } f
 
 export const userrouter = Router();
 
-userrouter.post("/test",test);
+userrouter.get("/test",test);
 userrouter.post("/newuser",createNewUser);
 userrouter.get("/getuser",getUser);
 userrouter.put("/updateuser",updateUser);
