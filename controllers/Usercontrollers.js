@@ -114,7 +114,8 @@ export const test = async (req,res) => {
         secure:true,
         credentials: true
     }).status(200).json({
-        message:"dEKH BEGHAIRAT"
+        message:"dEKH BEGHAIRAT",
+        details:Khudaya
     })
 }
 
