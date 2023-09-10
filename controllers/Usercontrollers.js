@@ -73,27 +73,26 @@ export const deleteUser = async (req,res)=>{
 
 export const Login = async (req,res)=>{
     const {Session} = req.cookies;
-    return respone(res,202,false,"Fucking bs",Session,Session)
-    // if(Session){
-    //     return respone(res,202,false,"User Already Logged In",Session)
-    // }
-    // else{
-    //     const {email,password} = req.body;
-    //     const auth = await usermodel.findOne({email});
-    //     if(auth && auth.registered){
-    //         const respond = await bcrypt.compare(password,auth.password);
-    //         if(respond){
-    //             const token = jwt.sign({_id:auth._id},process.env.DATA_KEY);
-    //             respone(res,200,true,"Logged In Successfully",token)
-    //         }
-    //         else{
-    //             respone(res,202,false,"Incorrect Password",undefined)
-    //         }
-    //     }
-    //     else{
-    //         respone(res,202,false,"Email does not Exist",undefined)
-    //     }
-    // }
+    if(Session){
+        return respone(res,202,false,"User Already Logged In",Session)
+    }
+    else{
+        const {email,password} = req.body;
+        const auth = await usermodel.findOne({email});
+        if(auth && auth.registered){
+            const respond = await bcrypt.compare(password,auth.password);
+            if(respond){
+                const token = jwt.sign({_id:auth._id},process.env.DATA_KEY);
+                respone(res,200,true,"Logged In Successfully",token)
+            }
+            else{
+                respone(res,202,false,"Incorrect Password",undefined)
+            }
+        }
+        else{
+            respone(res,202,false,"Email does not Exist",undefined)
+        }
+    }
 }
 
 export const Logout = async (req,res)=>{
