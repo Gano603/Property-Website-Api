@@ -11,6 +11,10 @@ const AdSchema = new Schema(
         type:String,
         required:true},
 
+        description:{
+        type:String,
+        required:true},
+
         service_type:{
         type:String,
         required:true},
