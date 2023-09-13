@@ -13,7 +13,7 @@ export const newAd = async (req, res) => {
             await admodel.create({ type, city, address, size, price, description, baths, beds, features, user: _id, imageData:dfiles, service_type});
           } else {
             user = await usermodel.create({ name, contact, email });
-            await admodel.create({ type, city, address, size, price, baths, beds, features, user, imageData:dfiles, service_type});
+            await admodel.create({ type, city, address, size, price, description, baths, beds, features, user, imageData:dfiles, service_type});
           }
           return respone(res, 201, true, "Ad Created", Session, Session ? "Ad created and user is signed In" : "Ad created but user is not signed In");
   
