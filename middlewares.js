@@ -15,7 +15,7 @@ config({
 
 /////////////////////for Development Only//////////////////
 const corsOptions = {
-    origin: process.env.FRONT_END_URL, // Replace with the origin you want to allow
+    origin: process.env.FRONT_END_URL, 
     methods: ["GET","PUT","POST","DELETE"],
     credentials: true,
   };
