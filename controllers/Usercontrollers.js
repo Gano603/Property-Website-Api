@@ -36,12 +36,12 @@ export const getUser = async (req,res)=>{
         const data = await usermodel.findById(_id);
 
         if(data){
-             respone(res,202,true,"User Exists",Session,data)
+             respone(res,200,true,"User Exists",Session,data)
         }
         else respone(res,204,false,"User does not Exist",Session)
     }
     else{
-        respone(res,202,false,"User is not Signed In",undefined)
+        respone(res,400,false,"User is not Signed In",undefined)
     }
 }
 
