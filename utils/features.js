@@ -14,7 +14,3 @@ export const respone = (res, status, success, message, token, rest) => {
     })
 
 }
-
-res
-
-
