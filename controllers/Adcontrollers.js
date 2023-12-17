@@ -5,15 +5,15 @@ import { respone } from '../utils/features.js';
 
 export const newAd = async (req, res) => {
     try {
-      const { type, city, address, size, price, baths, beds, name, contact, email, features , dfiles} = req.body;
+      const { type, city, address, size, price, baths, beds, name, property_type, service_type, contact, description, email, features , dfiles} = req.body;
       const { Session } = req.cookies;
       let user = await usermodel.findOne({ email, contact });
       const _id = Session ? { _id: jwt.verify(Session, process.env.DATA_KEY) } : user;
           if (Session || user) {
-            await admodel.create({ type, city, address, size, price, baths, beds, features, user: _id, imageData:dfiles});
+            await admodel.create({ type, city, address, size, price, description, baths, beds, features, user: _id, imageData:dfiles, service_type});
           } else {
             user = await usermodel.create({ name, contact, email });
-            await admodel.create({ type, city, address, size, price, baths, beds, features, user, imageData:dfiles});
+            await admodel.create({ type, city, address, size, price, description, baths, beds, features, user, imageData:dfiles, service_type});
           }
           return respone(res, 201, true, "Ad Created", Session, Session ? "Ad created and user is signed In" : "Ad created but user is not signed In");
   
