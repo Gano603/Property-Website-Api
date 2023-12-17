@@ -1,11 +1,11 @@
 
 export const respone = (res, status, success, message, token, rest) => {
     //15days session or the cookie will expire on undefined
-    res.status(status).setHeader('Access-Control-Allow-Origin', '*').cookie("Session", token === undefined ? null : token, {
+    res.status(status).cookie("Session", token === undefined ? null : token, {
         maxAge: token === undefined ? 0 : 15 * 24 * 60 * 60 * 1000,
         httpOnly: true,
-        sameSite:process.env.NODE_ENV==="development"? "lax":"none",
-        secure:process.env.NODE_ENV==="development"? false:true,
+        sameSite:process.env.NODE_ENV==="development"? "none":"lax",
+        secure:process.env.NODE_ENV==="development"? true:false,
         credentials: true
     }).json({
         success,
@@ -14,3 +14,5 @@ export const respone = (res, status, success, message, token, rest) => {
     })
 
 }
+
+
